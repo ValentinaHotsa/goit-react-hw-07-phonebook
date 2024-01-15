@@ -21,7 +21,7 @@ const ContactList = () => {
   const removeContact = id => {
     dispatch(deleteContact(id));
   };
-  console.log(contacts);
+
   return (
     <div className={css.containerList}>
       {isLoading && !error && <b>Request in progress...</b>}
@@ -43,85 +43,3 @@ const ContactList = () => {
   );
 };
 export default ContactList;
-
-// const fetchContacts = () => async dispatch => {
-//   try {
-//     dispatch(fetchingInProgress());
-//     const response = await axios.get('/contacts');
-//     dispatch(fetchingSuccess(response.data));
-//   } catch (e) {
-//     dispatch(fetchingError(e.message));
-//   }
-// };
-// useEffect(() => {
-//   dispatch(fetchContacts());
-// }, [dispatch]);
-// export const fetchContacts = createAsyncThunk(
-//   'contacts/fetchAll',
-//   async (_, thunkAPI) => {
-//     try {
-//       const response = await axios.get('/contacts');
-//       return response.data;
-//     } catch (e) {
-//       return thunkAPI.rejectWithValue(e.message);
-//     }
-//   }
-// );
-
-// export const addContact = createAsyncThunk(
-//   'contacts/addcontacts',
-//   async (text, thunkAPI) => {
-//     try {
-//       const response = await axios.post('/contacts', { text });
-//       return response.data;
-//     } catch (e) {
-//       return thunkAPI.rejectWithValue(e.message);
-//     }
-//   }
-// );
-// export const deleteContact = createAsyncThunk(
-//   'contacts/deleteContact',
-//   async (contactId, thunkAPI) => {
-//     try {
-//       const response = await axios.delete(`/contacts/${contactId}`);
-//       return response.data;
-//     } catch (e) {
-//       return thunkAPI.rejectWithValue(e.message);
-//     }
-//   }
-// );
-// новий код
-//
-//
-//
-//
-//
-
-//
-//
-//
-//
-// новий код
-
-// useEffect(() => {
-//   const storedContacts = JSON.parse(localStorage.getItem('contacts'));
-//   if (storedContacts) {
-//     dispatch(saveContact(storedContacts));
-//   }
-// }, [dispatch]);
-
-// useEffect(() => {
-//   localStorage.clear();
-//   localStorage.setItem('contacts', JSON.stringify(contacts));
-// }, [contacts]);
-
-// import {
-//   deleteContacts,
-//   saveContact,
-//   fetchingInProgress,
-//   fetchingSuccess,
-//   fetchingError,
-// } from '../../redux/contactsSlice';
-
-// import axios from 'axios';
-// import { createAsyncThunk } from '@reduxjs/toolkit';

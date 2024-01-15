@@ -46,32 +46,6 @@ function ContactForm() {
     }
   };
 
-  //
-  //
-  //NEW
-  //
-  //
-  // const onSubmit = evt => {
-  //   evt.preventDefault();
-
-  //   const newContact = {
-  //     id: nanoid(),
-  //     name,
-  //     number,
-  //   };
-
-  //   if (
-  //     contacts.some(
-  //       contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
-  //     )
-  //   ) {
-  //     alert(`${newContact.name} is already in contacts`);
-  //   } else {
-  //     dispatch(saveContact(newContact));
-  //     setName('');
-  //     setNumber('');
-  //   }
-  // };
   return (
     <form className={css.form} onSubmit={onSubmit}>
       <label className={css.formLabel}>
