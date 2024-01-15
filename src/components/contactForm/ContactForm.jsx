@@ -2,7 +2,8 @@ import css from './ContactForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { nanoid } from '@reduxjs/toolkit';
-import { saveContact } from '../../redux/contactsSlice';
+// import { saveContact } from '../../redux/contactsSlice';
+import { addContact } from '../../redux/contactsSlice';
 
 function ContactForm() {
   const [name, setName] = useState('');
@@ -11,18 +12,17 @@ function ContactForm() {
   const contacts = useSelector(state => state.contacts.contacts);
 
   const handleChange = event => {
-    switch (event.target.name) {
-      case 'name':
-        setName(event.target.value);
-        break;
-      case 'number':
-        setNumber(event.target.value);
-        break;
-      default:
-        return;
+    const { name, value } = event.target;
+    if (name === 'name') {
+      setName(value);
+    } else if (name === 'number') {
+      setNumber(value);
     }
   };
 
+  //
+  //
+  // NEW
   const onSubmit = evt => {
     evt.preventDefault();
 
@@ -38,12 +38,40 @@ function ContactForm() {
       )
     ) {
       alert(`${newContact.name} is already in contacts`);
-    } else {
-      dispatch(saveContact(newContact));
-      setName('');
-      setNumber('');
+      return;
     }
+
+    dispatch(addContact(newContact));
+    setName('');
+    setNumber('');
   };
+
+  //
+  //
+  //NEW
+  //
+  //
+  // const onSubmit = evt => {
+  //   evt.preventDefault();
+
+  //   const newContact = {
+  //     id: nanoid(),
+  //     name,
+  //     number,
+  //   };
+
+  //   if (
+  //     contacts.some(
+  //       contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
+  //     )
+  //   ) {
+  //     alert(`${newContact.name} is already in contacts`);
+  //   } else {
+  //     dispatch(saveContact(newContact));
+  //     setName('');
+  //     setNumber('');
+  //   }
+  // };
   return (
     <form className={css.form} onSubmit={onSubmit}>
       <label className={css.formLabel}>

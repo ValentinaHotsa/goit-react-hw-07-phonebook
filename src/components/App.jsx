@@ -1,27 +1,9 @@
-import { useEffect } from 'react';
 import ContactForm from 'components/contactForm/ContactForm';
 import ContactList from 'components/contactList/ContactList';
 import Filter from 'components/filter/Filter';
 import css from './App.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { saveContact } from '../redux/contactsSlice';
 
 export function App() {
-  const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts.contacts);
-
-  useEffect(() => {
-    const storedContacts = JSON.parse(localStorage.getItem('contacts'));
-    if (storedContacts) {
-      dispatch(saveContact(storedContacts));
-    }
-  }, [dispatch]);
-
-  useEffect(() => {
-    localStorage.clear();
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
-
   return (
     <div
       style={{
