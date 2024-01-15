@@ -2,8 +2,7 @@ import css from './ContactForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { nanoid } from '@reduxjs/toolkit';
-// import { saveContact } from '../../redux/contactsSlice';
-import { addContact } from '../../redux/contactsSlice';
+import { addContact } from '../../redux/operations';
 
 function ContactForm() {
   const [name, setName] = useState('');
@@ -20,10 +19,7 @@ function ContactForm() {
     }
   };
 
-  //
-  //
-  // NEW
-  const onSubmit = evt => {
+  const onSubmit = async evt => {
     evt.preventDefault();
 
     const newContact = {
@@ -41,9 +37,13 @@ function ContactForm() {
       return;
     }
 
-    dispatch(addContact(newContact));
-    setName('');
-    setNumber('');
+    try {
+      await dispatch(addContact(newContact));
+      setName('');
+      setNumber('');
+    } catch (error) {
+      console.log('Failed to add contact');
+    }
   };
 
   //

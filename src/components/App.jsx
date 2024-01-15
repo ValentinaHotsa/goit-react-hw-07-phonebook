@@ -19,10 +19,8 @@ export function App() {
         <ContactForm />
 
         <h2 className={css.titleList}>Contacts:</h2>
-
-        <ContactList />
-
         <Filter />
+        <ContactList />
       </div>
     </div>
   );
